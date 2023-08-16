@@ -3,8 +3,7 @@ import React, { useState } from 'react'
 import {
   BrowserRouter as Router,
   Routes,
-  Route,
-  // Link
+  Route
 } from "react-router-dom";
 import Navrbar from './components/Navbar';
 import TextForm from './components/TextForm';
@@ -43,7 +42,7 @@ function App() {
         <div className="container my-4">
           <Routes>
             <Route exact path="/" element={<TextForm heading="Enter your text here :-" mode={mode} showAlert={showAlert} />} />
-            <Route exact path="/about" element={<About mode={mode} toggleDarkModeBtn={toggleDarkModeBtn} />} />
+            <Route exact path="/about" element={<About mode={mode} />} />
           </Routes>
         </div>
       </Router>

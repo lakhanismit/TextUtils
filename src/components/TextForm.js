@@ -38,12 +38,12 @@ export default function TextForm(props) {
                 <div>
                     <div className="mb-3">
                         <label htmlFor="myform" className="form-label">{props.heading}</label>
-                        <textarea className="form-control" value={text} onChange={handleOnChange} id="myform" rows="8" style={{ backgroundColor: props.mode === 'dark' ? 'black' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }}></textarea>
-                        <button className="btn btn-primary m-1" onClick={chageToUP}>Change To UpperCase</button>
-                        <button className="btn btn-primary m-1" onClick={chageToLow}>Change To LowerCase</button>
-                        <button className="btn btn-primary m-1" onClick={chageClear}>Clear Texts</button>
-                        <button className="btn btn-primary m-1" onClick={copyAll}>Copy Texts</button>
-                        <button className="btn btn-primary m-1" onClick={extraSpaces}>Remove Extra Spaces</button>
+                        <textarea className="form-control" value={text} onChange={handleOnChange} id="myform" rows="8" style={{ backgroundColor: props.mode === 'dark' ? '#2b3035' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }}></textarea>
+                        <button disabled={text.length===0} className="btn btn-primary my-2 mx-1" onClick={chageToUP}>Change To UpperCase</button>
+                        <button disabled={text.length===0} className="btn btn-primary my-2 mx-1" onClick={chageToLow}>Change To LowerCase</button>
+                        <button disabled={text.length===0} className="btn btn-primary my-2 mx-1" onClick={chageClear}>Clear Texts</button>
+                        <button disabled={text.length===0} className="btn btn-primary my-2 mx-1" onClick={copyAll}>Copy Texts</button>
+                        <button disabled={text.length===0} className="btn btn-primary my-2 mx-1" onClick={extraSpaces}>Remove Extra Spaces</button>
                     </div>
                 </div>
                 <h2>Text Summery</h2>
@@ -62,19 +62,19 @@ export default function TextForm(props) {
                     </thead>
                     <tbody>
                         <tr>
-                            <td>{text.split(' ').length}</td>
+                            <td>{text.split(' ').filter((i)=>{return i.length !== 0}).length}</td>
                             <td>{text.length}</td>
                             <td>{text.split('.').length - 1}</td>
                             <td>{(text.length) / (text.split(' ').length)}</td>
                             <td>{(text.split(' ').length) / (text.split('.').length - 1)}</td>
-                            <td>{text.replace(/\n$/gm, '').split(/\n/).length}</td>
+                            <td>{text.replace(/\n$/gm, '').split(/\n/).filter((i)=>{return i.length !== 0}).length}</td>
                             <td>{(text.split('.').length - 1) / (text.replace(/\n$/gm, '').split(/\n/).length)}</td>
-                            <td>{0.008 * text.split(' ').length}</td>
+                            <td>{0.008 * text.split(' ').filter((i)=>{return i.length !== 0}).length}</td>
                         </tr>
                     </tbody>
                 </table>
                 <h2>Perview</h2>
-                <p>{text.length > 0 ? text : 'Please Enter text to show perview'}</p>
+                <p>{text.length > 0 ? text : 'Nothing to perview'}</p>
             </div>
         </>
     )
